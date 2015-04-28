@@ -1,3 +1,2 @@
-# tutorial-jetty
-Tutorials and snippet on embedding the Jetty web server
-Done
+# Tutorial Jetty
+Tutorials and snippets on embedding the Jetty web server

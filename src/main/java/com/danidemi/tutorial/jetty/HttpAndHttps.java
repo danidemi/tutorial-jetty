@@ -1,25 +1,5 @@
-package com.danidemi.snippet;
+package com.danidemi.tutorial.jetty;
 
-//
-//  ========================================================================
-//  Copyright (c) 1995-2015 Mort Bay Consulting Pty. Ltd.
-//  ------------------------------------------------------------------------
-//  All rights reserved. This program and the accompanying materials
-//  are made available under the terms of the Eclipse Public License v1.0
-//  and Apache License v2.0 which accompanies this distribution.
-//
-//      The Eclipse Public License is available at
-//      http://www.eclipse.org/legal/epl-v10.html
-//
-//      The Apache License v2.0 is available at
-//      http://www.opensource.org/licenses/apache2.0.php
-//
-//  You may elect to redistribute this code under either of these licenses.
-//  ========================================================================
-//
- 
-
- 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.http.HttpVersion;
 import org.eclipse.jetty.server.Connector;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Request;
@@ -43,9 +22,11 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
  
 /**
- * A Jetty server with multiple connectors.
+ * A Jetty server with HTTP and HTTPS.
+ * You should execute <pre>src/main/scripts/generate_keystore.sh</pre> to generate, or renew, the keystore
+ * that contains the self signed certificate and the private key.
  */
-public class ManyConnectors
+public class HttpAndHttps
 {
     public static void main( String[] args ) throws Exception
     {
@@ -96,7 +77,6 @@ public class ManyConnectors
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStorePath(keystoreFile.getAbsolutePath());
         sslContextFactory.setKeyStorePassword("pazzword");
-        //sslContextFactory.setKeyManagerPassword("pazzword");
         sslContextFactory.setTrustStorePath(keystoreFile.getAbsolutePath());
         sslContextFactory.setTrustStorePassword("pazzword");
  
@@ -137,7 +117,7 @@ public class ManyConnectors
         // In this example it is the current directory but it can be configured to anything that the jvm has access to.
         resource_handler.setDirectoriesListed(true);
         resource_handler.setWelcomeFiles(new String[]{ "index.html" });
-        resource_handler.setResourceBase(".");
+        resource_handler.setResourceBase("./src/main/resources");
         
         
 		// Set a handler
