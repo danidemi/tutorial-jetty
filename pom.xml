@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.danidemi.snippet</groupId>
 	<artifactId>tutorial-jetty</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	
 	<properties>
 		<jetty.version>9.2.2.v20140723</jetty.version>	
